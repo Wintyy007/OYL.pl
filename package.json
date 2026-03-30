@@ -1,0 +1,9 @@
+{
+  "name": "oyl-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OYL website with a simple Node.js server",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

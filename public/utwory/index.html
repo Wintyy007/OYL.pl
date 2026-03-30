@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utwory | OYL</title>
+  <meta
+    name="description"
+    content="Najnowsze utwory Young Olek z YouTube w osobnej zakladce OYL."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-page="utwory">
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="/" aria-label="OYL - strona glowna">
+      <img class="logo-image" src="/assets/logo.png" alt="OYL logo">
+      <span class="logo-text">Olek's Young Label</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Glowna nawigacja">
+      <a href="/o-nas/">O nas</a>
+      <a href="/artysci/">Artysci</a>
+      <a href="/utwory/">Utwory</a>
+      <a href="/premiery/">Premiery</a>
+      <a href="/kontakt/">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero section">
+      <div class="section-heading reveal is-visible">
+        <p class="eyebrow">Utwory</p>
+        <h1>Najnowsze utwory Young Olek z YouTube.</h1>
+        <p class="hero-text">
+          Osobna zakladka z nowymi numerami, miniaturkami i szybkim przejsciem prosto
+          do kanalu Young Olek.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="track-grid" data-latest-tracks>
+        <article class="track-card reveal is-visible">
+          <span class="artist-tag">Loading</span>
+          <h3>Laduje najnowsze premiery...</h3>
+          <p>Serwer pobiera teraz ostatnie materialy z YouTube Young Olek.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>(c) <span id="year"></span> OYL / Olek's Young Label</p>
+  </footer>
+
+  <script src="/assets/scripts.js"></script>
+</body>
+</html>
