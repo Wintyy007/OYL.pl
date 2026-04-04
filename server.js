@@ -41,6 +41,27 @@ const mimeTypes = {
   ".txt": "text/plain; charset=utf-8"
 };
 
+function resolveWellKnownPath(pathname) {
+  if (!pathname.startsWith("/.well-known/")) {
+    return null;
+  }
+
+  const relativePath = pathname.replace(/^\/+/, "");
+  const normalizedPath = path.normalize(relativePath);
+  const wellKnownRoot = path.join(ROOT, ".well-known");
+  const absolutePath = path.join(ROOT, normalizedPath);
+  const relativeToRoot = path.relative(wellKnownRoot, absolutePath);
+
+  if (
+    relativeToRoot.startsWith("..") ||
+    path.isAbsolute(relativeToRoot)
+  ) {
+    return null;
+  }
+
+  return absolutePath;
+}
+
 const platformConfigs = [
   {
     id: "youtube",
@@ -73,8 +94,12 @@ function sendFile(res, filePath) {
     }
 
     const ext = path.extname(filePath).toLowerCase();
+    const contentType =
+      mimeTypes[ext] ||
+      (ext ? "application/octet-stream" : "text/plain; charset=utf-8");
+
     res.writeHead(200, {
-      "Content-Type": mimeTypes[ext] || "application/octet-stream",
+      "Content-Type": contentType,
       "Cache-Control": "no-cache"
     });
     res.end(content);
@@ -880,6 +905,13 @@ const server = http.createServer((req, res) => {
 
   if (assetRoutes.has(pathname)) {
     sendFile(res, assetRoutes.get(pathname));
+    return;
+  }
+
+  const wellKnownPath = resolveWellKnownPath(pathname);
+
+  if (wellKnownPath && fs.existsSync(wellKnownPath) && fs.statSync(wellKnownPath).isFile()) {
+    sendFile(res, wellKnownPath);
     return;
   }
 
